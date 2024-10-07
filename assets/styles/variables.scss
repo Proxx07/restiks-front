@@ -26,14 +26,20 @@
   --secondary-900: rgb(102, 11, 24);
   --secondary-950: rgb(77, 8, 18);
 
-  --accent-text: rgb(67, 82, 90);
+  --white: 255, 255, 255;
+  --black: 0, 0, 0;
 
-  --white: rgb(255, 255, 255);
-  --black: rgb(0, 0, 0);
+  --black-25: rgba(var(--black), .25);
+  --black-50: rgba(var(--black), .5);
+  --black-100: rgba(var(--black), 1);
 
-  --border-color-primary: #99A1A6;
+  --white-25: rgba(var(--white), .25);
+  --white-50: rgba(var(--white), .5);
+  --white-100: rgba(var(--white), 1);
 
-  --shadow: 0 .4rem 2rem 0 var(--primary-100);
+  --bg-color: var(--white-100);
+  --text-color: var(--black-100);
+  --shadow: 0 .4rem 2rem 0 var(--black-25);
 
 
   /* ================== fonts ================== */

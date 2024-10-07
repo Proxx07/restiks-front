@@ -14,7 +14,10 @@ const testStore = useTestStore();
       </NuxtLink>
     </nav>
   </header>
-  Global count = {{ testStore.count }}
+
+  <div class="text">
+    Global count = {{ testStore.count }}
+  </div>
 
   <main class="main" role="main">
     <slot />
@@ -23,6 +26,8 @@ const testStore = useTestStore();
   <footer class="footer" style="min-height: 20rem; background: #000" />
 </template>
 
-<style scoped>
-
+<style>
+.text {
+  color: var(--primary-500);
+}
 </style>
