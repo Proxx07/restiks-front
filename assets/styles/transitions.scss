@@ -1,0 +1,22 @@
+// page animation
+.fade-slow-enter-active,
+.fade-slow-leave-active {
+  transition: var(--transition-slow);
+}
+
+.fade-slow-enter-from {
+  opacity: 0;
+  filter: blur(.5rem);
+  @include media-min($tablet) {
+    transform: scale(.9);
+  }
+}
+
+.fade-slow-leave-to {
+  opacity: 0;
+  filter: blur(.5rem);
+  @include media-min($tablet) {
+    transform: scale(1.1);
+  }
+}
+// page animation end
