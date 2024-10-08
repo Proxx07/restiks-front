@@ -6,8 +6,8 @@ const testStore = useTestStore();
   <div>
     <h1>Home page</h1>
 
-    <button @click="testStore.inc">
+    <Button @click="testStore.inc">
       GlobalInc ++
-    </button>
+    </Button>
   </div>
 </template>

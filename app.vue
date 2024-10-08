@@ -1,25 +1,12 @@
 <script setup lang="ts">
 import '@/assets/styles/main.scss';
 
-const primary = ref<string>('red');
-const secondary = ref<string>('');
-
-useHead({
-  style: [
-    {
-      innerHTML: `:root { --primary-500: ${primary.value} }`,
-      tagPriority: 'critical',
-    },
-  ],
-});
 </script>
 
 <template>
-  <div class="app">
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <style lang="scss">

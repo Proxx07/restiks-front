@@ -10,9 +10,9 @@ const testStore = useTestStore();
     <h1>Test page</h1>
     LocalState: {{ count }}
 
-    <button @click="inc">
+    <Button @click="inc" severity="secondary">
       +
-    </button>
+    </Button>
 
     <hr>
     GlobalState = {{ testStore.count }}
