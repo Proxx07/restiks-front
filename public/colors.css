@@ -24,6 +24,9 @@
     --secondary-900: rgb(102, 11, 24);
     --secondary-950: rgb(77, 8, 18);
 
+    --primary-text-button-color: var(--primary-500);
+    --secondary-text-button-color: var(--secondary-500);
+
     --white-rgb: 255, 255, 255;
     --black-rgb: 10, 10, 10;
 
@@ -44,6 +47,5 @@
     --text-color-75: var(--black-75);
 
     --shadow-color: var(--black-25);
-
     --shadow: 0 .4rem 2rem 0 var(--shadow-color);
 }
