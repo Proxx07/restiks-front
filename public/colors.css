@@ -24,18 +24,26 @@
     --secondary-900: rgb(102, 11, 24);
     --secondary-950: rgb(77, 8, 18);
 
-    --white: 255, 255, 255;
-    --black: 0, 0, 0;
+    --white-rgb: 255, 255, 255;
+    --black-rgb: 10, 10, 10;
 
-    --black-25: rgba(var(--black), .25);
-    --black-50: rgba(var(--black), .5);
-    --black-100: rgba(var(--black), 1);
+    --black-25: rgba(var(--black-rgb), .25);
+    --black-75: rgba(var(--black-rgb), .75);
+    --black: rgba(var(--black-rgb), 1);
 
-    --white-25: rgba(var(--white), .25);
-    --white-50: rgba(var(--white), .5);
-    --white-100: rgba(var(--white), 1);
+    --white-25: rgba(var(--white-rgb), .25);
+    --white-75: rgba(var(--white-rgb), .75);
+    --white: rgba(var(--white-rgb), 1);
 
-    --bg-color: var(--white-100);
-    --text-color: var(--black-100);
-    --shadow: 0 .4rem 2rem 0 var(--black-25);
+    --primary-surface-color: var(--white);
+    --secondary-surface-color: var(--white);
+
+    --bg-color: var(--white);
+
+    --text-color: var(--black);
+    --text-color-75: var(--black-75);
+
+    --shadow-color: var(--black-25);
+
+    --shadow: 0 .4rem 2rem 0 var(--shadow-color);
 }

@@ -5,8 +5,13 @@ export const useTest = () => {
     count.value++;
   };
 
+  const desc = () => {
+    count.value--;
+  };
+
   return {
     count,
     inc,
+    desc,
   };
 };

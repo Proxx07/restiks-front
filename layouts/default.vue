@@ -3,31 +3,41 @@ const testStore = useTestStore();
 </script>
 
 <template>
-  <header class="header">
-    <nav>
-      <NuxtLink to="/">
-        Home
-      </NuxtLink>
+  <div class="site-inner container">
+    <header class="header">
+      <nav>
+        <NuxtLink to="/">
+          Home
+        </NuxtLink>
+      </nav>
+    </header>
 
-      <NuxtLink to="/test">
-        Test
-      </NuxtLink>
-    </nav>
-  </header>
+    <div class="text" style="color: var(--primary-500);">
+      Global count = {{ testStore.count }}
+    </div>
 
-  <div class="text">
-    Global count = {{ testStore.count }}
+    <main class="main" role="main">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      Подвал
+    </footer>
   </div>
-
-  <main class="main" role="main">
-    <slot />
-  </main>
-
-  <footer class="footer" style="min-height: 20rem; background: #000" />
 </template>
 
-<style>
-.text {
-  color: var(--primary-500);
+<style lang="scss">
+.site-inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  nav {
+    a {
+      color: var(--text-color-75);
+    }
+  }
+  main {
+    flex-grow: 1;
+  }
 }
 </style>

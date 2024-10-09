@@ -3,10 +3,11 @@
 html {
   font-size: 10px;
 }
+
 body {
   font: var(--font-12-n);
 }
 
-body {
-  background-color: #ccc;
+h1 {
+  color: var(--text-color);
 }

@@ -1,30 +1,48 @@
+import { getColorForSurface, getRgbValues } from '~/ustils/colorPalette';
+
 export default defineNitroPlugin((nitroApp) => {
-  /*function checkColorForSurface(rgb: number[]) {
-    const [r, g, b] = rgb;
-    const brightness = (299 * r + 587 * g + 114 * b) / 1000;
-    return brightness < 128 ? 'white' : 'black';
-  }
+  nitroApp.hooks.hook('render:html', async (html) => {
+    // const colors = await $fetch('/');
+    const colors: Record<string, string> = {
+      'primary-50': 'rgb(255, 237, 234)',
+      'primary-100': 'rgb(255, 200, 192)',
+      'primary-200': 'rgb(252, 162, 151)',
+      'primary-300': 'rgb(245, 122, 110)',
+      'primary-400': 'rgb(235, 76, 67)',
+      'primary-500': 'rgb(229, 45, 43)',
+      'primary-600': 'rgb(199, 38, 36)',
+      'primary-700': 'rgb(170, 31, 29)',
+      'primary-800': 'rgb(142, 24, 22)',
+      'primary-900': 'rgb(114, 17, 16)',
+      'primary-950': 'rgb(88, 11, 10)',
 
-  function getRgbValues (str: string) {
-    return str.match(/\d+/g)?.map(Number) ?? [0, 0, 0]
-  }*/
-
-  nitroApp.hooks.hook('render:html', (html, { event }) => {
-    // here will be request
-    // const colors = $fetch('/api/colors')
-    /*const response = {
-      'primary-500': 'rgb(222, 150, 255)',
-      'secondary-500': 'rgb(23, 55, 12)'
+      'secondary-50': 'rgb(253, 253, 253)',
+      'secondary-100': 'rgb(248, 248, 248)',
+      'secondary-200': 'rgb(243, 243, 243)',
+      'secondary-300': 'rgb(238, 238, 238)',
+      'secondary-400': 'rgb(233, 233, 233)',
+      'secondary-500': 'rgb(231, 231, 231)',
+      'secondary-600': 'rgb(201, 201, 201)',
+      'secondary-700': 'rgb(171, 171, 171)',
+      'secondary-800': 'rgb(143, 143, 143)',
+      'secondary-900': 'rgb(115, 115, 115)',
+      'secondary-950': 'rgb(89, 89, 89)',
+      'isDarkMode': 'true',
     };
 
-    const primaryRgb = getRgbValues(response['primary-500'])
-    const secondaryRgb = getRgbValues(response['secondary-500'])
+    const isDarkBg = colors.isDarkMode === 'true';
+    if (isDarkBg) html.htmlAttrs.push('class="app-dark"');
 
-    console.log('colorOnPrimaryBg', checkColorForSurface(primaryRgb))
-    console.log('colorOnSecondaryBg', checkColorForSurface(secondaryRgb))*/
+    colors['primary-surface-color'] = `var(--${getColorForSurface(getRgbValues(colors['primary-500']))})`;
+    colors['secondary-surface-color'] = `var(--${getColorForSurface(getRgbValues(colors['secondary-500']))})`;
+    colors['bg-color'] = `var(--${!isDarkBg ? 'white' : 'black'})`;
+    colors['text-color'] = `var(--${isDarkBg ? 'white' : 'black'})`;
+    colors['shadow-color'] = `var(--${isDarkBg ? 'white-25' : 'black-25'})`;
+    colors['text-color-75'] = `var(--${isDarkBg ? 'white-75' : 'black-75'})`;
 
-    const colors = `<style>:root {--primary-500: red}</style>`
-    html.head.push('<link rel="stylesheet" href="colors.css"/>')
-    html.head.push(colors)
+    const colorsVars = `<style>:root { ${Object.keys(colors).map(el => `--${el}: ${colors[el]};`).join('')} }</style>`;
+
+    html.head.push('<link rel="stylesheet" href="colors.css"/>');
+    html.head.push(colorsVars);
   });
 });

@@ -1,6 +1,7 @@
 import type { PrimeVueConfiguration } from 'primevue/config';
 import { definePreset } from '@primeuix/styled';
 import Aura from '@primevue/themes/aura';
+import { buttonsConfig } from './button';
 
 const customPreset = definePreset(Aura, {
   primitive: {
@@ -35,13 +36,10 @@ const customPreset = definePreset(Aura, {
   components: {
     button: {
       colorScheme: {
-        secondary: {
-          background: 'var(--secondary-500)',
-          hoverBackground: 'var(--secondary-600)',
-          activeBackground: 'var(--secondary-700)',
-        }
-      }
-    }
+        light: { ...buttonsConfig() },
+        dark: { ...buttonsConfig() },
+      },
+    },
   },
 });
 
@@ -96,7 +94,7 @@ export const options: PrimeVueConfiguration = {
   theme: {
     preset: customPreset,
     options: {
-      darkModeSelector: 'none',
+      darkModeSelector: '.app-dark',
     },
   },
 };
