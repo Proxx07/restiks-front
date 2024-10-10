@@ -27,14 +27,29 @@ export default defineNitroPlugin((nitroApp) => {
       'secondary-800': 'rgb(143, 143, 143)',
       'secondary-900': 'rgb(115, 115, 115)',
       'secondary-950': 'rgb(89, 89, 89)',
-      'isDarkMode': 'true',
+      'isDarkMode': 'false',
     };
 
     const isDarkBg = colors.isDarkMode === 'true';
+
+    const isPrimaryLight = getColorForSurface(getRgbValues(colors['primary-500'])) === 'black';
+    const isSecondaryLight = getColorForSurface(getRgbValues(colors['secondary-500'])) === 'black';
+
     if (isDarkBg) html.htmlAttrs.push('class="app-dark"');
 
-    colors['primary-surface-color'] = `var(--${getColorForSurface(getRgbValues(colors['primary-500']))})`;
-    colors['secondary-surface-color'] = `var(--${getColorForSurface(getRgbValues(colors['secondary-500']))})`;
+    colors['primary-surface-color'] = `var(--${isPrimaryLight ? 'black' : 'white'})`;
+    colors['secondary-surface-color'] = `var(--${isSecondaryLight ? 'black' : 'white'})`;
+
+    if (!isDarkBg) {
+      if (isPrimaryLight) {
+        colors['primary-text-button-color'] = `var(--black)`;
+      }
+
+      if (isSecondaryLight) {
+        colors['secondary-text-button-color'] = `var(--black)`;
+      }
+    }
+
     colors['bg-color'] = `var(--${!isDarkBg ? 'white' : 'black'})`;
     colors['text-color'] = `var(--${isDarkBg ? 'white' : 'black'})`;
     colors['shadow-color'] = `var(--${isDarkBg ? 'white-25' : 'black-25'})`;

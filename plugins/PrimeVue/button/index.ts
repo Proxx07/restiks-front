@@ -21,24 +21,28 @@ export const buttonsConfig = () => {
     },
 
     text: {
+      primary: {
+        color: 'var(--primary-text-button-color)',
+      },
+
       secondary: {
-        color: 'var(--secondary-500)',
-        hoverBackground: 'var(--secondary-50)',
-        activeBackground: 'var(--secondary-100)',
+        color: 'var(--secondary-text-button-color)',
+        hoverBackground: 'color-mix(in srgb,var(--secondary-400),transparent 96%)',
+        activeBackground: 'color-mix(in srgb,var(--secondary-400),transparent 84%)',
       },
     },
 
     outlined: {
       primary: {
-        color: 'var(--primary-500)',
+        color: 'var(--primary-text-button-color)',
         borderColor: 'var(--primary-400)',
       },
 
       secondary: {
-        color: 'var(--secondary-500)',
+        color: 'var(--secondary-text-button-color)',
         borderColor: 'var(--secondary-400)',
-        hoverBackground: 'var(--secondary-50)',
-        activeBackground: 'var(--secondary-100)',
+        hoverBackground: 'color-mix(in srgb,var(--secondary-400),transparent 96%)',
+        activeBackground: 'color-mix(in srgb,var(--secondary-400),transparent 84%)',
       },
     },
   };

@@ -27,6 +27,9 @@
     --primary-text-button-color: var(--primary-500);
     --secondary-text-button-color: var(--secondary-500);
 
+    --primary-text-button-hover-color: var(--primary-text-button-color);
+    --secondary-text-button-hover-color: var(--secondary-text-button-color);
+
     --white-rgb: 255, 255, 255;
     --black-rgb: 10, 10, 10;
 
