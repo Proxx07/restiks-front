@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
 
+  runtimeConfig: {
+    apiBaseUrl: 'NUXT_API_BASE_URL',
+    apiUser: 'NUXT_API_USER',
+    apiPassword: 'NUXT_API_PASSWORD',
+  },
+
   app: {
     pageTransition: {
       name: 'fade-slow',
