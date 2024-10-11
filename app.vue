@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import '@/assets/styles/main.scss';
-
-const $toast = useToast();
 </script>
 
 <template>

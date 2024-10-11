@@ -59,13 +59,13 @@ export const options: PrimeVueConfiguration = {
   pt: {
     button: {
       root: {
-        class: 'font-14-n',
+        class: 'font-16-n',
       },
     },
 
     inputtext: {
       root: {
-        class: 'font-14-n',
+        class: 'font-20-n',
       },
     },
 
@@ -89,14 +89,14 @@ export const options: PrimeVueConfiguration = {
     datepicker: {
       pcInput: {
         root: {
-          class: 'underlined font-14-n',
+          class: 'underlined font-20-n',
         },
       },
     },
 
     textarea: {
       root: {
-        class: 'underlined font-14-n',
+        class: 'underlined font-20-n',
       },
     },
   },

@@ -9,6 +9,31 @@ body {
   font: var(--font-12-n);
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
+}
+
+h1, h2 {
+  font: var(--font-32-b);
+  @include media-max($tablet) {
+    font: var(--font-24-b);
+  }
+}
+
+h3, h4, h5, h6 {
+  font: var(--font-24-b);
+  @include media-max($tablet) {
+    font: var(--font-20-b);
+  }
+}
+
+.page {
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow);
+  &.shadow {
+    box-shadow: var(--shadow);
+  }
+  &.padding {
+     padding: var(--page-padding);
+  }
 }
