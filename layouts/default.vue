@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const testStore = useTestStore();
 </script>
 
 <template>
@@ -11,10 +10,6 @@ const testStore = useTestStore();
         </NuxtLink>
       </nav>
     </header>
-
-    <div class="text" style="color: var(--primary-500);">
-      Global count = {{ testStore.count }}
-    </div>
 
     <main class="main" role="main">
       <slot />

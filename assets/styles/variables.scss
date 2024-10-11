@@ -3,6 +3,7 @@
 
   /* ================== fonts ================== */
   --primary-font: 'Montserrat', sans-serif;
+
   /* --font-{size}-{weight} */
   --font-10-n: normal 400 1.0rem/1.2 var(--primary-font);
   --font-12-n: normal 400 1.2rem/1.2 var(--primary-font);
@@ -41,7 +42,6 @@
 
   --transition-fast: all 0.2s;
   --transition-slow: all 0.4s;
-
   /* ================== other ================== */
 }
 

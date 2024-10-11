@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import '@/assets/styles/main.scss';
+
+const $toast = useToast();
 </script>
 
 <template>
@@ -8,9 +10,7 @@ import '@/assets/styles/main.scss';
       <NuxtPage />
     </NuxtLayout>
   </div>
-  <client-only>
-    <Toast />
-  </client-only>
+  <Toast />
 </template>
 
 <style lang="scss">

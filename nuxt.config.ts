@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     apiPassword: 'NUXT_API_PASSWORD',
   },
 
+  build: {
+    transpile: ['primevue'],
+  },
+
   app: {
     pageTransition: {
       name: 'fade-slow',
@@ -37,12 +41,15 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./store/**'],
   },
+  imports: {
+    dirs: ['store'],
+  },
 
   primevue: {
     autoImport: false,
     components: {
       include: [
-        'Button', 'Card', 'InputNumber', 'InputMask',
+        'Button', 'Card', 'InputNumber', 'InputMask', 'Toast',
         'Select', 'SelectButton', 'InputText', 'InputIcon',
         'InputGroup', 'InputGroupAddon', 'Skeleton', 'TextArea',
       ],

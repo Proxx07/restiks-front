@@ -3,6 +3,7 @@ import { getColorForSurface, getRgbValues } from '~/ustils/colorPalette';
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('render:html', async (html) => {
     const { SiteSettings: { Colors: colors } } = await $fetch<{ SiteSettings: { Colors: Record<string, string> } }>('/api/system/');
+
     const isDarkBg = colors.isDarkMode === 'true';
 
     const isPrimaryLight = getColorForSurface(getRgbValues(colors['primary-500'])) === 'black';
