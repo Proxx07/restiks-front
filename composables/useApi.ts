@@ -1,15 +1,34 @@
 import type { UseFetchOptions } from 'nuxt/app';
 
-export function useApi<T>(url: string | (() => string), options: UseFetchOptions<T> = {}) {
-  return useFetch(
-    url,
+interface IHooks {
+  afterResponse: () => void
+  afterError: () => void
+}
+
+export function useApi<T>(url: string | (() => string), options: Omit<UseFetchOptions<T>, 'onResponse' | 'onResponseError'> = {}, hooks?: IHooks) {
+  return useFetch(url,
     {
       $fetch,
+
       onResponseError(event) {
-        if (event.options.window) {
-          alert(event.error.message);
-        }
+        if (import.meta.server) return;
+        if (hooks?.afterError) return hooks.afterError();
+
+        // common error handler
+        console.log(event.response);
       },
+
+      onResponse(event) {
+        if (import.meta.server) return;
+
+        if (hooks?.afterResponse && !event.error && (event.response && !event.response._data.error)) {
+          return hooks.afterResponse();
+        }
+
+        // common error handler
+        console.log(event.response);
+      },
+
       ...options,
     },
   );

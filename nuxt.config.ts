@@ -42,10 +42,9 @@ export default defineNuxtConfig({
     autoImport: false,
     components: {
       include: [
-        'Button', 'ConfirmDialog', 'Dialog', 'Toast', 'Card', 'InputNumber', 'Chip',
-        'InputText', 'InputGroup', 'InputGroupAddon', 'InputIcon', 'Skeleton', 'Badge',
-        'InputMask', 'Select', 'SelectButton', 'Message', 'ProgressSpinner',
-        'Popover', 'TextArea',
+        'Button', 'Card', 'InputNumber', 'InputMask',
+        'Select', 'SelectButton', 'InputText', 'InputIcon',
+        'InputGroup', 'InputGroupAddon', 'Skeleton', 'TextArea',
       ],
     },
     options,

@@ -8,7 +8,23 @@ const query = { RegionId: 0, Language: 2 };
 
 const { data: sysData } = useFetch('/api/system/');
 // const { data } = useFetch('/api/regionmenu', { query });
-const { data } = useApi('/api/menu', { query });
+const { data, error, refresh } = useApi(
+  '/api/regionmenu',
+  { query },
+  {
+    afterResponse: () => {
+      console.log(data.value);
+    },
+    afterError: () => {
+      console.log(error);
+    },
+  },
+);
+onMounted(() => {
+  setTimeout(() => {
+    refresh();
+  }, 2000);
+});
 </script>
 
 <template>

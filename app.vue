@@ -8,6 +8,9 @@ import '@/assets/styles/main.scss';
       <NuxtPage />
     </NuxtLayout>
   </div>
+  <client-only>
+    <Toast />
+  </client-only>
 </template>
 
 <style lang="scss">
