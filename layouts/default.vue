@@ -1,29 +1,23 @@
 <script setup lang="ts">
 const pages = [
-  { name: 'Menu', link: '/' },
-  { name: 'About', link: '/about' },
-  { name: 'Filial', link: '/filial' },
-  { name: 'Contacts', link: '/contacts' },
+  { name: 'Меню', link: '/' },
+  { name: 'О нас', link: '/about' },
+  { name: 'Филиалы', link: '/filial' },
+  { name: 'Контакты', link: '/contacts' },
 ];
 
-const activePageName = ref<string>('Menu');
+const activePageName = ref<string>('Меню');
+const siteStore = useSiteStore();
+const menuStore = useMenuStore();
+await menuStore.getRegionMenu();
 </script>
 
 <template>
   <div class="site-inner container">
-    <header class="header">
-      <nav>
-        <NuxtLink v-for="page in pages" :key="page.link" :to="page.link">
-          <Button :label="page.name" text plain @click="activePageName = page.name" />
-        </NuxtLink>
-      </nav>
-    </header>
+    <Header :logo="siteStore.logo" :pages="pages" />
 
     <main class="main" role="main">
-      <aside class="aside">
-        <h3> Folders </h3>
-      </aside>
-
+      <SideBar :folders="menuStore.folders" :current-folder-id="menuStore.currentFolderId" />
       <div class="content">
         <h1> {{ activePageName }} </h1>
 
@@ -33,6 +27,7 @@ const activePageName = ref<string>('Menu');
 
     <footer class="footer">
       <h3> Footer </h3>
+      {{ siteStore.copyright }}
     </footer>
   </div>
 </template>
@@ -47,10 +42,12 @@ const activePageName = ref<string>('Menu');
     flex-grow: 1;
     display: flex;
     gap: 2.4rem;
+    overflow: hidden;
   }
 
   aside {
     min-width: 30rem;
+    max-width: 30rem;
   }
 
   .content {

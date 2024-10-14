@@ -1,17 +1,9 @@
 import type { UseFetchOptions } from 'nuxt/app';
 
-interface IHooks {
-  afterResponse?: () => void
-  afterError?: () => void
-}
-
-export function useApi<T>(url: string | (() => string), options: Omit<UseFetchOptions<T>, 'onResponse' | 'onResponseError'> = {}, hooks?: IHooks) {
+export function useApi<T>(url: string | (() => string), options: UseFetchOptions<T> = {}) {
   const $toast = useToastStore();
 
-  const opts = {
-    immediate: false,
-    ...options,
-  };
+  const opts = { immediate: false, ...options };
 
   return useFetch(url,
     {
@@ -19,7 +11,6 @@ export function useApi<T>(url: string | (() => string), options: Omit<UseFetchOp
 
       onResponseError(event) {
         if (import.meta.server) return;
-        if (hooks?.afterError) return hooks.afterError();
 
         // common error handler
         console.log(event.response);
@@ -27,10 +18,6 @@ export function useApi<T>(url: string | (() => string), options: Omit<UseFetchOp
 
       onResponse(event) {
         if (import.meta.server) return;
-
-        if (hooks?.afterResponse && !event.error && (event.response && !event.response._data.error)) {
-          return hooks.afterResponse();
-        }
 
         // common error handler
         console.log(event.response);

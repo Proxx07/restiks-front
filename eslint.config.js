@@ -6,7 +6,7 @@ export default antfu({
     'style/semi': ['error', 'always'],
     'antfu/if-newline': 'off',
     'antfu/consistent-list-newline': 'off',
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'warn',
     'antfu/top-level-function': 'off',
   },
 

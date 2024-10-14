@@ -1,33 +1,29 @@
-import { useApi } from '#imports';
+import type { IFolder, IMenuResponse, IProduct } from './types';
 
-export const useMenu = async () => {
-  const folders = ref<any[]>([]);
-  const products = ref<any[]>([]);
+export const useMenu = () => {
+  const folders = ref<IFolder[]>([]);
+  const products = ref<IProduct[]>([]);
 
-  const productsForCart = ref<any[]>([]);
+  const { data, status, refresh } = useApi<IMenuResponse>('/api/regionmenu', {
+    query: { RegionId: 0, Language: 2 },
+  });
 
-  const { data, error, status, refresh: getRegionMenu } = useApi<Record<string, any[]>>('/api/regionmenu',
-    {
-      query: {
-        RegionId: 0,
-        Language: 2,
-      },
-    },
-    {
-      afterResponse: () => {
-        if (data.value) {
-          folders.value = data.value.categories.filter(folder => !folder.parentId);
-          products.value = data.value.categories.filter((folder) => {
-            folder.id;
-          });
-        }
-      },
-    },
-  );
+  const getRegionMenu = async () => {
+    await refresh();
 
-  await getRegionMenu();
+    if (data.value) {
+      folders.value = data.value.categories.filter(folder => !folder.parentId);
+      products.value = data.value.products;
+    }
+  };
+
+  const loading = computed(() => import.meta.client && status.value === 'pending');
 
   return {
+    loading,
+    folders,
+    products,
+
     getRegionMenu,
   };
 };
