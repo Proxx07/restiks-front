@@ -40,10 +40,13 @@
   --radius-xl: 5rem;
   --radius-round: 50%;
 
-  --transition-fast: all 0.2s;
+  --transition-fast: all 0.3s;
   --transition-slow: all 0.4s;
 
   --shadow: 0 .4rem 2rem 0 var(--shadow-color);
+  --card-shadow: 0 .2rem 1rem 0 var(--shadow-color);
+  --button-shadow: 0 .1rem .5rem 0 var(--shadow-color);
+
   --shadow-primary: 0 .4rem 2rem 0 var(--primary-100);
   --shadow-secondary: 0 .4rem 2rem 0 var(--secondary-100);
 

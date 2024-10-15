@@ -7,15 +7,16 @@ const menuStore = useMenuStore();
     <div v-if="menuStore.loading">
       Loading ...
     </div>
-    <template v-else>
-      <div v-for="product in menuStore.currentProducts" class="product">
-        <img :src="product.imageUrl" alt="" width="200">
-        <h5>{{ product.name }}</h5>
-      </div>
-    </template>
+    <div v-else class="products-list">
+      <product v-for="product in menuStore.currentProducts" :key="product.id" :product="product" />
+    </div>
   </div>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
 </style>

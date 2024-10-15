@@ -3,12 +3,10 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--primary-50);
+  background-color: color-mix(in srgb,var(--primary-400),transparent 84%);
   border-radius: var(--radius-m);
 }
 
@@ -111,4 +109,9 @@ html, body {
 }
 .font-36-b {
   font: var(--font-36-b) !important;
+}
+
+.text-left {
+  text-align: left;
+  justify-content: flex-start;
 }

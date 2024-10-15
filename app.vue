@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import '@/assets/styles/main.scss';
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="app">

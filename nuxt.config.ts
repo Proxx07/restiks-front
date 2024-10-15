@@ -33,15 +33,22 @@ export default defineNuxtConfig({
     },
   },
 
+  css: [
+    './primeicons/primeicons.css',
+    '~/assets/styles/main.scss',
+  ],
+
   modules: [
     '@pinia/nuxt',
     '@primevue/nuxt-module',
     '@vueuse/nuxt',
+    '@nuxtjs/i18n',
   ],
 
   pinia: {
     storesDirs: ['./store/**'],
   },
+
   imports: {
     dirs: ['store'],
   },
@@ -50,11 +57,16 @@ export default defineNuxtConfig({
     autoImport: false,
     components: {
       include: [
-        'Button', 'Card', 'InputNumber', 'InputMask', 'Toast',
+        'Button', 'InputNumber', 'InputMask', 'Toast', 'Card',
         'Select', 'SelectButton', 'InputText', 'InputIcon',
         'InputGroup', 'InputGroupAddon', 'Skeleton', 'TextArea',
       ],
     },
     options,
+  },
+  i18n: {
+    strategy: 'prefix_except_default',
+    defaultLocale: 'ru',
+    vueI18n: './locales/config.ts',
   },
 });

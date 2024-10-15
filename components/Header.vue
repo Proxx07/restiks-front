@@ -17,5 +17,8 @@ defineProps<{
 </template>
 
 <style scoped>
-
+header {
+  display: flex;
+  align-items: center;
+}
 </style>

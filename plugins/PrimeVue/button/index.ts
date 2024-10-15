@@ -45,5 +45,9 @@ export const buttonsConfig = () => {
         activeBackground: 'color-mix(in srgb,var(--secondary-400),transparent 84%)',
       },
     },
+
+    raised: {
+      shadow: 'var(--button-shadow)',
+    },
   };
 };

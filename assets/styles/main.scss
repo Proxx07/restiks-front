@@ -7,10 +7,12 @@ html {
 
 body {
   font: var(--font-12-n);
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
+  margin: 0;
 }
 
 h1, h2 {
@@ -29,11 +31,18 @@ h3, h4, h5, h6 {
 
 .page {
   border-radius: var(--radius-l);
-  box-shadow: var(--shadow);
   &.shadow {
     box-shadow: var(--shadow);
   }
   &.padding {
      padding: var(--page-padding);
+  }
+}
+
+nav {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 }

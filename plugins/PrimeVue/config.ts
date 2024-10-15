@@ -50,6 +50,12 @@ const customPreset = definePreset(Aura, {
       contentGap: '.8rem',
       contentPadding: '1rem 0.9rem',
     },
+
+    card: {
+      shadow: 'var(--card-shadow)',
+      borderRadius: 'var(--radius-l)',
+      bodyPadding: '1.6rem',
+    },
   },
 });
 

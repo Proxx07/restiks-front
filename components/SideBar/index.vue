@@ -10,13 +10,26 @@ defineProps<{
 <template>
   <aside class="aside">
     <h3> Folders </h3>
-
-    <NuxtLink v-for="folder in folders" :key="folder.id" :to="{ path: '/', query: { folder: folder.id } }">
-      <Button severity="secondary" text :raised="currentFolderId === folder.id" :label="folder.name" fluid />
-    </NuxtLink>
+    <nav class="page shadow padding">
+      <ul>
+        <li v-for="folder in folders" :key="folder.id">
+          <NuxtLink :to="{ path: '/', query: { folder: folder.id } }">
+            <Button
+              text plain fluid
+              :raised="currentFolderId === folder.id"
+              :label="folder.name"
+            />
+          </NuxtLink>
+        </li>
+      </ul>
+    </nav>
   </aside>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
+ul li {
+  :deep(.p-button) {
+    justify-content: flex-start;
+  }
+}
 </style>

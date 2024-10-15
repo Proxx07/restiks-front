@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "menu": "Menu uz",
+    "about": "About",
+    "filial": "Filial",
+    "contacts": "Contacts",
+    "profile": "Profile",
+    "history": "History",
+    "addresses": "Addresses",
+    "favorites": "Favorites",
+    "exit": "Exit"
+  }
+}
