@@ -48,3 +48,8 @@ export interface IMenuResponse {
   categories: IFolder[]
   products: IProduct[]
 }
+
+export type IModifierGroup = Record<string, {
+  name: string
+  list: IModifier[]
+}>;
