@@ -12,7 +12,6 @@ const menuStore = useMenuStore();
 await menuStore.getRegionMenu();
 
 const { locales, locale, setLocale } = useI18n();
-
 const lang = computed({
   get() {
     return locale.value;
@@ -29,9 +28,7 @@ const lang = computed({
 <template>
   <div class="site-inner container">
     <Select v-model="lang" :options="locales" option-label="name" option-value="code" />
-    <br><br><br><br>
-    <h1>{{ $t('menu.menu') }}</h1>
-    <br><br><br><br><br><br><br>
+    <br>
     <Header :logo="siteStore.logo" :pages="pages" />
 
     <main class="main" role="main">
@@ -60,6 +57,7 @@ const lang = computed({
     flex-grow: 1;
     display: flex;
     gap: 2.4rem;
+    margin-top: 4rem;
   }
 
   aside {
@@ -69,6 +67,10 @@ const lang = computed({
 
   .content {
     flex-grow: 1;
+  }
+
+  .footer {
+    min-height: 50rem;
   }
 }
 </style>

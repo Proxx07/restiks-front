@@ -1,6 +1,4 @@
-import en from './en.json';
-import ru from './ru.json';
-import uz from './uz.json';
+import { DEFAULT_LANGUAGE } from '~/ustils/constants';
 
 function pluralRuleRU(choice: number) {
   const numbString = choice.toString();
@@ -19,10 +17,9 @@ function pluralRuleRU(choice: number) {
 
 export default defineI18nConfig(() => ({
   legacy: false,
-  fallbackLocale: 'ru',
+  fallbackLocale: DEFAULT_LANGUAGE,
   globalInjection: true,
   pluralRules: {
     ru: pluralRuleRU,
   },
-  messages: { ru, en, uz },
 }));

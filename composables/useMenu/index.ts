@@ -5,7 +5,7 @@ export const useMenu = () => {
   const products = ref<IProduct[]>([]);
 
   const { data, status, refresh } = useApi<IMenuResponse>('/api/regionmenu', {
-    query: { RegionId: 0, Language: 2 },
+    query: { RegionId: 0 },
   });
 
   const getRegionMenu = async () => {

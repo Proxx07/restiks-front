@@ -4,10 +4,7 @@ const menuStore = useMenuStore();
 
 <template>
   <div class="page">
-    <div v-if="menuStore.loading">
-      Loading ...
-    </div>
-    <div v-else class="products-list">
+    <div class="products-list">
       <product v-for="product in menuStore.currentProducts" :key="product.id" :product="product" />
     </div>
   </div>

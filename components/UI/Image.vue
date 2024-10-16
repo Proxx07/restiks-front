@@ -8,19 +8,26 @@ const props = defineProps<{
 }>();
 
 const { isLoading, error } = useImage({ src: props.src });
+const loading = computed(() => !import.meta.server && isLoading.value);
 </script>
 
 <template>
-  <div class="image" :style="{ '--size': size ? `${size}px` : '100%' }">
+  <div
+    class="image"
+    :style="{
+      '--size': size ? `${size}px` : '100%',
+      '--icon-size': `${size ? size - 10 : 200}px`,
+    }"
+  >
     <client-only>
-      <template v-if="isLoading">
+      <template v-if="loading">
         <Skeleton width="100%" class="spinner" height="100%" />
         <span class="pi pi-image" style="opacity: .1" />
       </template>
 
       <transition-group name="fade">
-        <span v-if="!isLoading && error" class="pi pi-image" />
-        <img v-if="!isLoading && !error" :src="props.src" :alt="alt ?? 'image'">
+        <span v-if="!loading && error" class="pi pi-image" />
+        <img v-if="!loading && !error" :src="props.src" :alt="alt ?? 'image'" loading="lazy">
       </transition-group>
 
       <template #fallback>
@@ -49,7 +56,7 @@ const { isLoading, error } = useImage({ src: props.src });
     margin: auto;
   }
   .pi-image {
-    font-size: 20rem;
+    font-size: var(--icon-size);
   }
 }
 img[loading="lazy"] {
