@@ -1,7 +1,16 @@
 import type { PrimeVueConfiguration } from 'primevue/config';
 import { definePreset } from '@primeuix/styled';
 import Aura from '@primevue/themes/aura';
-import { buttonsConfig } from './button';
+
+import { buttonPt, buttonsConfig } from './button';
+import { cardConfig, cardPt } from './card';
+import { datePickerPt } from './datePicker';
+import { dialogPt } from './dialog';
+import { inputNumberConfig, inputNumberPt } from './inputNumber';
+import { inputTextPt } from './inputText';
+import { textareaPt } from './textarea';
+import { toastConfig } from './toast';
+import { toggleButtonConfig, toggleButtonPt } from './toggleButton';
 
 const customPreset = definePreset(Aura, {
   primitive: {
@@ -13,6 +22,7 @@ const customPreset = definePreset(Aura, {
       lg: '1rem',
     },
   },
+
   semantic: {
     primary: {
       50: 'var(--primary-50)',
@@ -33,29 +43,22 @@ const customPreset = definePreset(Aura, {
       paddingY: '1rem',
     },
   },
+
   components: {
     button: {
       colorScheme: {
-        light: { ...buttonsConfig() },
-        dark: { ...buttonsConfig() },
+        light: buttonsConfig(),
+        dark: buttonsConfig(),
       },
     },
 
-    toast: {
-      width: '28rem',
-      summaryFontSize: '1.6rem',
-      summaryFontWeight: '700',
-      detailFontSize: '1.4rem',
-      iconSize: '2rem',
-      contentGap: '.8rem',
-      contentPadding: '1rem 0.9rem',
-    },
+    togglebutton: toggleButtonConfig(),
 
-    card: {
-      shadow: 'var(--card-shadow)',
-      borderRadius: 'var(--radius-l)',
-      bodyPadding: '1.6rem',
-    },
+    toast: toastConfig(),
+
+    card: cardConfig(),
+
+    inputnumber: inputNumberConfig(),
   },
 });
 
@@ -63,48 +66,21 @@ export const options: PrimeVueConfiguration = {
   ripple: true,
 
   pt: {
-    button: {
-      root: {
-        class: 'font-16-n',
-      },
-    },
+    button: buttonPt(),
 
-    inputtext: {
-      root: {
-        class: 'font-20-n',
-      },
-    },
+    inputtext: inputTextPt(),
 
-    inputnumber: {
-      pcInput: {
-        root: {
-          readonly: 'true',
-        },
-      },
-    },
+    inputnumber: inputNumberPt(),
 
-    dialog: {
-      title: 'font-24-b',
-    },
+    togglebutton: toggleButtonPt(),
 
-    card: {
-      title: 'font-16-b',
-      content: 'font-14-n',
-    },
+    dialog: dialogPt(),
 
-    datepicker: {
-      pcInput: {
-        root: {
-          class: 'underlined font-20-n',
-        },
-      },
-    },
+    card: cardPt(),
 
-    textarea: {
-      root: {
-        class: 'underlined font-20-n',
-      },
-    },
+    datepicker: datePickerPt(),
+
+    textarea: textareaPt(),
   },
 
   theme: {

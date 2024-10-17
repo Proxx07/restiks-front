@@ -26,7 +26,7 @@ export default defineNitroPlugin((nitroApp) => {
       'secondary-800': 'rgb(143, 143, 143)',
       'secondary-900': 'rgb(115, 115, 115)',
       'secondary-950': 'rgb(89, 89, 89)',
-      'isDarkMode': 'true',
+      'isDarkMode': 'false',
     };
 
     try {
@@ -42,7 +42,7 @@ export default defineNitroPlugin((nitroApp) => {
     }
 
     // if (error) return;
-    colors.isDarkMode = 'true';
+    // colors.isDarkMode = 'true';
     const isDarkBg = colors.isDarkMode === 'true';
 
     const isPrimaryLight = getColorForSurface(getRgbValues(colors['primary-500'])) === 'black';

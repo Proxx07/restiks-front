@@ -52,4 +52,6 @@ export interface IMenuResponse {
 export type IModifierGroup = Record<string, {
   name: string
   list: IModifier[]
+  upLimit: number
+  downLimit: number
 }>;

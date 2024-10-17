@@ -7,7 +7,9 @@ const props = defineProps<{
   alt?: string
 }>();
 
-const { isLoading, error } = useImage({ src: props.src });
+const image = computed(() => props.src ? props.src.replace('http:', 'https:') : '');
+
+const { isLoading, error } = useImage({ src: image.value });
 const loading = computed(() => !import.meta.server && isLoading.value);
 </script>
 
@@ -27,11 +29,11 @@ const loading = computed(() => !import.meta.server && isLoading.value);
 
       <transition-group name="fade">
         <span v-if="!loading && error" class="pi pi-image" />
-        <img v-if="!loading && !error" :src="props.src" :alt="alt ?? 'image'" loading="lazy">
+        <img v-if="!loading && !error" :src="image" :alt="alt ?? 'image'" loading="lazy">
       </transition-group>
 
       <template #fallback>
-        <img :src="props.src" :alt="alt ?? 'image'" loading="lazy">
+        <img :src="image" :alt="alt ?? 'image'" loading="lazy">
       </template>
     </client-only>
   </div>

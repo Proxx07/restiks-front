@@ -1,21 +1,8 @@
 html body {
-  /*.p-button[aria-label="Primary"]:not(:disabled) {
-    &.p-button-text,
-    &.p-button-outlined {
-      color: var(--primary-text-button-color);
-      &:hover {
-        color: var(--primary-text-button-hover-color);
-      }
-    }
+  .p-inputnumber-input {
+    flex: none;
+    width: 4rem;
+    text-align: center;
+    --p-inputtext-padding-y: .7rem;
   }
-
-  .p-button-secondary:not(:disabled) {
-    &.p-button-text,
-    &.p-button-outlined {
-      color: var(--secondary-text-button-color);
-      &:hover {
-        color: var(--secondary-text-button-hover-color);
-      }
-    }
-  }*/
 }

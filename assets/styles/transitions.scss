@@ -53,3 +53,18 @@
   opacity: 0;
   transform: translateY(200%);
 }
+
+.slideX-right-enter-active,
+.slideX-right-leave-active {
+  transition: var(--transition-fast);
+}
+
+.slideX-right-enter-from {
+  opacity: 0;
+  transform: translateX(150%);
+}
+
+.slideX-right-leave-to {
+  opacity: 0;
+  transform: translateX(150%);
+}

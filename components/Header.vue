@@ -8,7 +8,7 @@ const localePath = useLocalePath();
 
 <template>
   <header class="header">
-    <img :src="logo" alt="" height="150" width="150">
+    <img v-if="logo" :src="logo" alt="Logo" height="150" width="150">
     <nav>
       <NuxtLink v-for="page in pages" :key="page.link" :to="localePath(page.link)">
         <Button text plain>

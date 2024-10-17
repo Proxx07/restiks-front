@@ -51,3 +51,11 @@ export const buttonsConfig = () => {
     },
   };
 };
+
+export const buttonPt = () => {
+  return {
+    root: {
+      class: 'font-16-n',
+    },
+  };
+};
