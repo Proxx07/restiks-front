@@ -38,7 +38,7 @@ const kinds = ref<Record<string, number>>({});
 
 const selectedModifiers = computed(() => Object.keys(kinds.value));
 
-const itemClickHandler = ({ id, maxOneDish, modiGroup }: IModifier) => {
+const itemClickHandler = ({ id, modiGroup }: IModifier) => {
   if (modifiers.value[modiGroup].upLimit === 0) {
     if (!kinds.value[id]) {
       kinds.value[id] = 1;
@@ -64,7 +64,9 @@ const setModifiersDefaultValues = () => {
     }
     else {
       if (modifiers.value[modId].downLimit > modifiers.value[modId].list.length) {
-        kinds.value[modifiers.value[modId].list[0].id] = modifiers.value[modId].list[0].maxOneDish < modifiers.value[modId].downLimit ? modifiers.value[modId].list[0].maxOneDish : modifiers.value[modId].downLimit;
+        kinds.value[modifiers.value[modId].list[0].id] = modifiers.value[modId].list[0].maxOneDish < modifiers.value[modId].downLimit
+          ? modifiers.value[modId].list[0].maxOneDish
+          : modifiers.value[modId].downLimit;
       }
       else {
         for (let i = 0; i < modifiers.value[modId].downLimit; i++) {
@@ -89,18 +91,19 @@ const checkKindsAmount = (value: number, id: string) => {
     <UI-image :src="product.imageUrl" />
     <h5>{{ product.name }}</h5>
     <div class="modifiers">
-      <div v-for="modifier in Object.keys(modifiers)" :key="modifier" class="modifier-group" style="margin: 1.5rem 0">
+      <div v-for="modifier in Object.keys(modifiers)" :key="modifier" class="modifier-group">
         <b>{{ modifiers[modifier].name }}: </b>
 
-        <div v-for="item in modifiers[modifier].list" :key="item.id" class="div">
+        <template v-for="item in modifiers[modifier].list" :key="item.id">
           <ProductModifier
             v-model:amount="kinds[item.id]"
             :active="selectedModifiers.includes(item.id)"
             :item="item"
+            :group-length="modifiers[modifier].list.length"
             @modifier-selected="itemClickHandler(item)"
             @update:amount="($event: number) => checkKindsAmount($event, item.id)"
           />
-        </div>
+        </template>
       </div>
     </div>
   </card-item>
@@ -122,6 +125,7 @@ const checkKindsAmount = (value: number, id: string) => {
     flex-direction: column;
     display: flex;
     gap: 0.5rem;
+    margin: 1.5rem 0;
   }
 }
 </style>

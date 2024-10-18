@@ -13,14 +13,14 @@ export function useApi<T>(url: string | (() => string), options: UseFetchOptions
       onResponseError(event) {
         if (import.meta.server) return;
 
-        console.log(event.response);
+        // console.log(event.response);
       },
 
       onResponse(event) {
         if (import.meta.server) return;
 
         // common error handler
-        console.log(event.response);
+        // console.log(event.response);
       },
       ...opts,
     },

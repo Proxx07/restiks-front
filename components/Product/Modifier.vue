@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import TextWithImage from '~/components/UI/TextWithImage.vue';
 import type { IModifier } from '~/composables/useMenu/types';
 
 const props = defineProps<{
   amount: number
   item: IModifier
   active: boolean
+  groupLength: number
 }>();
 
 const emit = defineEmits<{
@@ -22,12 +24,8 @@ const clickHandler = () => {
 <template>
   <div class="item-wrapper" :class="[active && 'active']">
     <Button text fluid class="modifier-button" @click="clickHandler">
-      <UIImage :size="30" :src="item.imageUrl" />
-      <span :key="item.name" class="modifier-name">
-        {{ item.name }}
-      </span>
+      <TextWithImage :image="item.imageUrl" :img-size="30" :text="item.name" text-class="font-14-n" />
     </Button>
-
     <transition name="slideX-right">
       <template v-if="active">
         <input-number
@@ -35,8 +33,8 @@ const clickHandler = () => {
           v-model="count"
           show-buttons
           button-layout="horizontal"
-          :min="0"
-          :max="item.maxOneDish"
+          :min="groupLength < item.downLimit ? item.downLimit : 0"
+          :max="item.maxOneDish ? item.maxOneDish : 100"
           style="width: 15rem; margin-right: .5rem; right: 0;"
         >
           <template #decrementbuttonicon>
@@ -79,9 +77,5 @@ const clickHandler = () => {
 .modifier-button {
   justify-content: flex-start;
   color: var(--text-color);
-  .modifier-name {
-    font: var(--font-14-n);
-    text-align: left;
-  }
 }
 </style>

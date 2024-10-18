@@ -10,26 +10,16 @@ const activePageName = ref<string>('Меню');
 const siteStore = useSiteStore();
 const menuStore = useMenuStore();
 await menuStore.getRegionMenu();
-
-const { locales, locale, setLocale } = useI18n();
-const lang = computed({
-  get() {
-    return locale.value;
-  },
-
-  set: async (value: string) => {
-    // emit('beforeLangChanged');
-    await setLocale(value);
-    // document.location.reload();
-  },
-});
 </script>
 
 <template>
   <div class="site-inner container">
-    <Select v-model="lang" :options="locales" option-label="name" option-value="code" />
-    <br>
-    <Header :logo="siteStore.logo" :pages="pages" />
+    <Header :logo="siteStore.logo" :pages="pages">
+      <template #header-bottom>
+        <input-text v-model="menuStore.search" placeholder="Поиск" fluid />
+        <Button label="Cart" />
+      </template>
+    </Header>
 
     <main class="main" role="main">
       <SideBar :folders="menuStore.folders" :current-folder-id="menuStore.currentFolderId" />
@@ -52,7 +42,7 @@ const lang = computed({
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
+  padding-top: 4rem;
   main {
     flex-grow: 1;
     display: flex;

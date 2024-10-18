@@ -1,3 +1,4 @@
+import globColors from '~/public/colors.css';
 import { getColorForSurface, getRgbValues } from '~/ustils/colorPalette';
 
 export default defineNitroPlugin((nitroApp) => {
@@ -38,7 +39,8 @@ export default defineNitroPlugin((nitroApp) => {
       error = true;
     }
     finally {
-      html.head.push('<link rel="stylesheet" href="colors.css"/>');
+      // html.head.push('<link rel="stylesheet" href="./colors.css"/>');
+      html.head.push(`<style> ${globColors} </style>`);
     }
 
     // if (error) return;

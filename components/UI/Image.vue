@@ -2,7 +2,7 @@
 import { useImage } from '@vueuse/core';
 
 const props = defineProps<{
-  src: string
+  src: string | null
   size?: number // px
   alt?: string
 }>();
@@ -33,7 +33,8 @@ const loading = computed(() => !import.meta.server && isLoading.value);
       </transition-group>
 
       <template #fallback>
-        <img :src="image" :alt="alt ?? 'image'" loading="lazy">
+        <img v-if="image" :src="image" :alt="alt ?? 'image'" loading="lazy">
+        <span v-else class="pi pi-image" />
       </template>
     </client-only>
   </div>
