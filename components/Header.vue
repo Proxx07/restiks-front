@@ -1,29 +1,16 @@
 <script setup lang="ts">
-import { globe, marker } from 'assets/images';
-import Dialog from 'primevue/dialog';
-import Popover, { type PopoverMethods } from 'primevue/popover';
+import type { Navigation } from '~/composables/useNavigation/types';
 
 defineProps<{
   logo: string
-  pages: Record<string, string>[]
+  pages: Navigation[]
+}>();
+
+const emit = defineEmits<{
+  (e: 'loginButtonClick'): void
 }>();
 
 const localePath = useLocalePath();
-
-const dialog = ref<boolean>(false);
-const openModal = () => {
-  dialog.value = true;
-};
-
-const region = ref<PopoverMethods>();
-const toggleRegionPopover = (e: Event) => {
-  region.value?.toggle(e);
-};
-
-const authModal = ref<boolean>(false);
-const openAuth = () => {
-  authModal.value = true;
-};
 </script>
 
 <template>
@@ -33,14 +20,13 @@ const openAuth = () => {
     </NuxtLink>
     <div class="header__content">
       <div class="header__content-top">
-        <site-navigation :pages="pages" style="flex-grow: 1" />
+        <site-navigation :pages="pages" class="header__navigation" />
 
-        <site-navigation-item title="Доставка или еда навынос" button-text="Выберите тип приёма" :icon="marker" @button-clicked="openModal" />
-        <site-navigation-item title="Регион" button-text="RegionName" :icon="globe" @button-clicked="toggleRegionPopover" />
+        <slot name="header-items" />
 
-        <div style="display: flex; align-items: center; gap: 1rem; min-width: 19rem">
+        <div class="header__content-top-buttons">
           <LangSwitcher />
-          <Button severity="secondary" label="LoginButton" @click="openAuth" />
+          <Button severity="secondary" label="LoginButton" @click="emit('loginButtonClick')" />
         </div>
       </div>
 
@@ -48,22 +34,6 @@ const openAuth = () => {
         <slot name="header-bottom" />
       </div>
     </div>
-
-    <Popover ref="region">
-      <div>
-        Here <br>
-        will be <br>
-        regions
-      </div>
-    </Popover>
-
-    <Dialog v-model:visible="dialog" modal :draggable="false" header="Map-widget-title">
-      <h3>Map widget</h3>
-    </Dialog>
-
-    <Dialog v-model:visible="authModal" modal :draggable="false" header="Auth">
-      <h3>Auth modal</h3>
-    </Dialog>
   </header>
 </template>
 
@@ -81,6 +51,10 @@ const openAuth = () => {
     }
   }
 
+  &__navigation {
+    flex-grow: 1;
+  }
+
   &__content {
     flex-grow: 1;
     display: flex;
@@ -90,6 +64,12 @@ const openAuth = () => {
       display: grid;
       grid-template-columns: 6fr 3fr 1fr 2fr;
       gap: 2rem;
+      &-buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-width: 19rem;
+      }
     }
 
     &-bottom {

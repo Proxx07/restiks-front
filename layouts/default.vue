@@ -1,20 +1,51 @@
 <script setup lang="ts">
-const pages = [
-  { name: 'Меню', link: '/' },
-  { name: 'О нас', link: '/about' },
-  { name: 'Филиалы', link: '/filial' },
-  { name: 'Контакты', link: '/contacts' },
-];
+import { globe, marker } from 'assets/images';
+import Dialog from 'primevue/dialog';
+import Popover, { type PopoverMethods } from 'primevue/popover';
+import { useNavigation } from '~/composables/useNavigation';
+
+const { headerPages } = useNavigation();
 
 const activePageName = ref<string>('Меню');
 const siteStore = useSiteStore();
 const menuStore = useMenuStore();
 await menuStore.getRegionMenu();
+
+const dialog = ref<boolean>(false);
+const openModal = () => {
+  dialog.value = true;
+};
+
+const region = ref<PopoverMethods>();
+const toggleRegionPopover = (e: Event) => {
+  region.value?.toggle(e);
+};
+
+const authModal = ref<boolean>(false);
+const openAuth = () => {
+  authModal.value = true;
+};
 </script>
 
 <template>
   <div class="site-inner container">
-    <Header :logo="siteStore.logo" :pages="pages">
+    <Header :logo="siteStore.logo" :pages="headerPages" @login-button-click="openAuth">
+      <template #header-items>
+        <site-navigation-item
+          title="Доставка или еда навынос"
+          button-text="Выберите тип приёма"
+          :icon="marker"
+          @button-clicked="openModal"
+        />
+
+        <site-navigation-item
+          title="Регион"
+          button-text="RegionName"
+          :icon="globe"
+          @button-clicked="toggleRegionPopover"
+        />
+      </template>
+
       <template #header-bottom>
         <input-text v-model="menuStore.search" placeholder="Поиск" fluid />
         <Button label="Cart" />
@@ -34,6 +65,22 @@ await menuStore.getRegionMenu();
       <h3> Footer </h3>
       {{ siteStore.copyright }}
     </footer>
+
+    <Popover ref="region">
+      <div>
+        Here <br>
+        will be <br>
+        regions
+      </div>
+    </Popover>
+
+    <Dialog v-model:visible="dialog" modal :draggable="false" header="Map-widget-title">
+      <h3>Map widget</h3>
+    </Dialog>
+
+    <Dialog v-model:visible="authModal" modal :draggable="false" header="Auth">
+      <h3>Auth modal</h3>
+    </Dialog>
   </div>
 </template>
 

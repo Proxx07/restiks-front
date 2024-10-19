@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Navigation } from '~/composables/useNavigation/types';
+
 defineProps<{
-  pages: Record<string, string>[]
+  pages: Navigation[]
 }>();
 const localePath = useLocalePath();
 </script>
@@ -9,7 +11,7 @@ const localePath = useLocalePath();
   <nav>
     <ul>
       <li v-for="page in pages" :key="page.link">
-        <NuxtLink :to="localePath(page.link)">
+        <NuxtLink v-if="page.link" :to="localePath(page.link)">
           <Button text plain>
             {{ $t(page.name) }}
           </Button>

@@ -17,10 +17,15 @@ const emit = defineEmits<{
     </div>
 
     <div class="details">
-      <div class="font-14-n">
-        {{ title }}
-      </div>
-      <Button v-if="buttonText" text :label="buttonText" class="item-button" :pt="{ root: 'font-14-n' }" @click="e => emit('buttonClicked', e)" />
+      <div class="font-14-n" v-text="title" />
+      <Button
+        v-if="buttonText"
+        class="item-button"
+        :pt="{ root: 'font-14-n' }"
+        :label="buttonText"
+        text
+        @click="e => emit('buttonClicked', e)"
+      />
     </div>
   </div>
 </template>
