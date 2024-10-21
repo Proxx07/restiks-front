@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { globe, marker } from 'assets/images';
-import Dialog from 'primevue/dialog';
 import Popover, { type PopoverMethods } from 'primevue/popover';
 import { useNavigation } from '~/composables/useNavigation';
 import type { ActionTypes } from '~/composables/useNavigation/types';
@@ -91,9 +90,9 @@ const sideBarActionHandler = (value: ActionTypes) => {
     <!--      <h3>Map widget</h3> -->
     <!--    </Dialog> -->
 
-    <Dialog v-model:visible="authModal" modal :draggable="false" header="Auth">
-      <h3>Auth modal</h3>
-    </Dialog>
+    <!--    <Dialog v-model:visible="authModal" modal :draggable="false" header="Auth"> -->
+    <!--      <h3>Auth modal</h3> -->
+    <!--    </Dialog> -->
   </div>
 </template>
 
