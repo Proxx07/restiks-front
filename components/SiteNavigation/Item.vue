@@ -63,6 +63,7 @@ const emit = defineEmits<{
 
   .details {
     flex-grow: 1;
+    min-width: 7rem;
   }
 }
 </style>

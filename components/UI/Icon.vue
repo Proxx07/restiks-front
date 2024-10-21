@@ -23,17 +23,23 @@ span {
   display: inline-block;
   font-size: 0;
   overflow: hidden;
+  text-align: center;
   :deep(svg) {
     width: auto;
     max-width: 100%;
     max-height: 100%;
+    transition: var(--transition-fast);
+
+    &[fill]:not([fill='none']) {
+      fill: currentColor;
+    }
   }
   &:not(.no-fill) {
     :deep(svg) {
-      path[fill] {
+      path[fill], circle[fill] {
         fill: currentColor;
       }
-      path[stroke] {
+      path[stroke], circle[stroke] {
         stroke: currentColor;
       }
     }

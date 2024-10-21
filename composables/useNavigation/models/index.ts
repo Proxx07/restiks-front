@@ -1,8 +1,9 @@
 import type { Navigation } from '../types';
+import { heart, logout, marker, time, user } from '@/assets/images/index';
 
 export const headerPages: Navigation[] = [
   {
-    name: 'menu',
+    name: 'index',
     link: '/',
   },
 
@@ -25,25 +26,30 @@ export const sidebarPages: Navigation[] = [
   {
     name: 'profile',
     link: '/profile',
+    icon: user,
   },
 
   {
-    name: 'history',
-    link: '/history',
+    name: 'profile-history',
+    link: '/profile/history',
+    icon: time,
   },
 
   {
-    name: 'addresses',
-    link: '/addresses',
+    name: 'profile-addresses',
+    link: '/profile/addresses',
+    icon: marker,
   },
 
   {
-    name: 'favorites',
-    link: '/favorites',
+    name: 'profile-favorites',
+    link: '/profile/favorites',
+    icon: heart.replace('transparent', '#000'),
   },
 
   {
     name: 'exit',
     action: 'exit',
+    icon: logout,
   },
 ];

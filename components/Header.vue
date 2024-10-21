@@ -5,11 +5,6 @@ defineProps<{
   logo: string
   pages: Navigation[]
 }>();
-
-const emit = defineEmits<{
-  (e: 'loginButtonClick'): void
-}>();
-
 const localePath = useLocalePath();
 </script>
 
@@ -26,7 +21,12 @@ const localePath = useLocalePath();
 
         <div class="header__content-top-buttons">
           <LangSwitcher />
-          <Button severity="secondary" label="LoginButton" @click="emit('loginButtonClick')" />
+          <client-only>
+            <Button severity="secondary" :label="$t('header.login')" fluid />
+            <template #fallback>
+              <Skeleton width="100%" height="4.1rem" />
+            </template>
+          </client-only>
         </div>
       </div>
 

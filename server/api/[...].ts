@@ -23,6 +23,5 @@ export default defineEventHandler(async (event) => {
   }
 
   Object.assign(event.node.req.headers, { Authorization: `Bearer ${token}` });
-
   return proxyRequest(event, target);
 });

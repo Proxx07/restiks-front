@@ -12,7 +12,6 @@
 <style lang="scss">
 .app {
   max-width: 100vw;
-  overflow-x: hidden;
   background-color: var(--bg-color);
 }
 </style>

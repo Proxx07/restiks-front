@@ -5,4 +5,19 @@ html body {
     text-align: center;
     --p-inputtext-padding-y: .7rem;
   }
+
+  .p-popover {
+    --p-popover-gutter: .2rem;
+    &:before, &:after {
+      display: none;
+    }
+    .p-popover-content {
+      padding-left: 0;
+      padding-right: 0;
+      &:has(.regions-list) {
+        max-height: 15rem;
+        overflow: auto;
+      }
+    }
+  }
 }

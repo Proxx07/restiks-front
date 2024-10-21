@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   text: string
-  image: string | null
+  image?: string
   imgSize: number
   textClass?: string // for font-classes 'font-12-n'
   imageNoFill?: boolean
@@ -12,7 +12,7 @@ const isIcon = computed(() => props.image && props.image.startsWith('<svg'));
 
 <template>
   <div class="image-text">
-    <div class="image" :style="{ 'max-width': `${props.imgSize}px` }">
+    <div class="image" :style="{ '--width': `${props.imgSize}px` }">
       <UIIcon v-if="isIcon" :icon="image ?? ''" :no-fill="imageNoFill" />
       <UIImage v-else :src="image" :size="props.imgSize" />
     </div>
@@ -29,6 +29,9 @@ const isIcon = computed(() => props.image && props.image.startsWith('<svg'));
   color: currentColor;
   .image {
     width: 100%;
+    max-width: var(--width);
+    min-width: var(--width);
+    font-size: 0;
   }
   .text {
     flex-grow: 1;

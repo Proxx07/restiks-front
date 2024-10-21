@@ -2,7 +2,7 @@
 import { useImage } from '@vueuse/core';
 
 const props = defineProps<{
-  src: string | null
+  src?: string
   size?: number // px
   alt?: string
 }>();

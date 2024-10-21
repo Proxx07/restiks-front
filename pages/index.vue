@@ -4,14 +4,14 @@ const menuStore = useMenuStore();
 
 <template>
   <div class="page">
-    <div class="products-list">
+    <div v-if="!menuStore.loading" class="products-list">
       <transition-group name="fade">
-        <product
-          v-for="product in menuStore.currentProducts"
-          :key="product.id"
-          :product="product"
-        />
+        <product v-for="product in menuStore.currentProducts" :key="product.id" :product="product" />
       </transition-group>
+    </div>
+
+    <div v-else class="products-list">
+      <Skeleton v-for="i in 12" :key="i" height="40rem" width="100%" />
     </div>
   </div>
 </template>
@@ -21,7 +21,8 @@ const menuStore = useMenuStore();
   display: grid;
   grid-template-columns: repeat(3, minmax(4rem, 1fr));
   gap: 2rem;
-  .fade-leave-active, .fade-leave-to {
+  .fade-leave-active,
+  .fade-leave-to {
     display: none !important;
   }
 }

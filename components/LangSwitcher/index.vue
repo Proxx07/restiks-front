@@ -42,6 +42,7 @@ const lang = computed({
 <style scoped lang="scss">
 .lang-switcher {
   border: 0;
+  width: 100%;
   --p-select-shadow: none;
   --p-select-dropdown-color: var(--primary-500);
 }

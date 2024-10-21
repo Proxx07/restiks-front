@@ -1,11 +1,14 @@
 import type { IFolder, IMenuResponse, IProduct } from './types';
+import { useRegionsStore } from '~/store/regions';
 
 export const useMenu = () => {
+  const regionStore = useRegionsStore();
+
   const folders = ref<IFolder[]>([]);
   const products = ref<IProduct[]>([]);
 
   const { data, status, refresh } = useApi<IMenuResponse>('/api/regionmenu', {
-    query: { RegionId: 0 },
+    query: { RegionId: regionStore.currentRegionId },
   });
 
   const getRegionMenu = async () => {

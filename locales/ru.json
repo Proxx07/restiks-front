@@ -1,13 +1,24 @@
 {
   "menu": {
-    "menu": "Меню",
-    "about": "About",
-    "filial": "Filial",
-    "contacts": "Contacts",
-    "profile": "Profile",
-    "history": "History",
-    "addresses": "Addresses",
-    "favorites": "Favorites",
-    "exit": "Exit"
+    "index": "Меню",
+    "about": "О нас",
+    "filial": "Филиалы",
+    "contacts": "Контакты",
+    "profile": "Профиль",
+    "profile-history": "История заказов",
+    "profile-addresses": "Мои адреса",
+    "profile-favorites": "Избранное",
+    "exit": "Выход"
+  },
+
+  "folders": "Каталог",
+  "my-profile": "Мой аккаунт",
+
+  "header": {
+    "delivery-title": "Доставка или еда навынос",
+    "region-title": "Регион",
+    "login": "Войти",
+    "search": "Поиск...",
+    "basket": "Корзина"
   }
 }

@@ -13,7 +13,7 @@ const localePath = useLocalePath();
       <li v-for="page in pages" :key="page.link">
         <NuxtLink v-if="page.link" :to="localePath(page.link)">
           <Button text plain>
-            {{ $t(page.name) }}
+            {{ $t(`menu.${page.name}`) }}
           </Button>
         </NuxtLink>
       </li>

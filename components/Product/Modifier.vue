@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TextWithImage from '~/components/UI/TextWithImage.vue';
 import type { IModifier } from '~/composables/useMenu/types';
 
 const props = defineProps<{
@@ -24,7 +23,7 @@ const clickHandler = () => {
 <template>
   <div class="item-wrapper" :class="[active && 'active']">
     <Button text fluid class="modifier-button" @click="clickHandler">
-      <TextWithImage :image="item.imageUrl" :img-size="30" :text="item.name" text-class="font-14-n" />
+      <UITextWithImage :image="item.imageUrl" :img-size="30" :text="item.name" text-class="font-14-n" />
     </Button>
     <transition name="slideX-right">
       <template v-if="active">
