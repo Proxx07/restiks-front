@@ -7,10 +7,17 @@ export const useMenu = () => {
   const folders = ref<IFolder[]>([]);
   const products = ref<IProduct[]>([]);
 
-  const { data: regionmenu, status: regionMenuStatus, refresh: fetchRegionMenu } = useApi<IMenuResponse>('/api/regionmenu', {
-    query: { RegionId: locationStore.currentRegionId },
-    key: `regionMenu${locationStore.currentRegionId}`,
+  const regionMenuParams = computed(() => {
+    return {
+      RegionId: locationStore.currentRegionId,
+    };
   });
+
+  const {
+    data: regionmenu,
+    status: regionMenuStatus,
+    refresh: fetchRegionMenu,
+  } = useApi<IMenuResponse>('/api/regionmenu', { params: regionMenuParams });
 
   const getRegionMenu = async () => {
     await fetchRegionMenu();
@@ -21,9 +28,17 @@ export const useMenu = () => {
     }
   };
 
-  const { data: restaurantmenu, status: restaurantMenuStatus, refresh: fetchRestaurantMenu } = useApi<IMenuResponse>('/api/restaurantmenu', {
-    query: { RestaurantId: locationStore.restaurantId },
+  const restMenuParams = computed(() => {
+    return {
+      RestaurantId: locationStore.restaurantId,
+    };
   });
+
+  const {
+    data: restaurantmenu,
+    status: restaurantMenuStatus,
+    refresh: fetchRestaurantMenu,
+  } = useApi<IMenuResponse>('/api/restaurantmenu', { params: restMenuParams });
 
   const getRestaurantMenu = async () => {
     await fetchRestaurantMenu();
@@ -33,15 +48,21 @@ export const useMenu = () => {
     }
   };
 
-  const { data: customMenu, status: customMenuStatus, refresh: fetchCustomMenu } = useApi<IMenuDetailedResponse>('/api/restaurantmenu', {
-    query: {
+  const customMenuParams = computed(() => {
+    return {
       RestaurantId: '',
       RegionId: locationStore.currentRegionId,
       Longitude: locationStore.longLat[0],
       Latitude: locationStore.longLat[1],
       OrderTypeId: locationStore.activeDelivery,
-    },
+    };
   });
+
+  const {
+    data: customMenu,
+    status: customMenuStatus,
+    refresh: fetchCustomMenu,
+  } = useApi<IMenuDetailedResponse>('/api/restaurantmenu', { params: customMenuParams });
 
   const getCustomMenu = async () => {
     await fetchCustomMenu();

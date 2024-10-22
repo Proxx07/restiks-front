@@ -46,6 +46,7 @@ const list = computed(() => state.value.delivery === 0 ? suggestedAddresses.valu
   flex-grow: 1;
   display: flex;
   gap: 2rem;
+
   > div {
     flex-grow: 1;
     width: calc(50% - 1rem);

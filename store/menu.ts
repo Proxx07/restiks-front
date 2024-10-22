@@ -24,6 +24,7 @@ export const useMenuStore = defineStore('menu', () => {
         await getRegionMenu();
       }
       else {
+        console.log('123');
         await getCustomMenu();
       }
     }
