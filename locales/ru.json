@@ -16,9 +16,13 @@
 
   "header": {
     "delivery-title": "Доставка или еда навынос",
+    "delivery-text": "Выберите тип приёма",
     "region-title": "Регион",
     "login": "Войти",
     "search": "Поиск...",
     "basket": "Корзина"
-  }
+  },
+
+  "delivery": "Доставка",
+  "self-delivery": "Самовывоз"
 }

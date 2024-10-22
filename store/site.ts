@@ -1,8 +1,11 @@
+import icon from '@/assets/images/rest-icon.svg';
 import type { ISiteSettings } from '~/ustils/types/siteSettings';
 
 export const useSiteStore = defineStore('site', () => {
   const locale = useCookie('i18n_redirected');
   const { data, refresh: getAppSettings } = useFetch<ISiteSettings>('/api/system/');
+
+  const restIcon = icon;
 
   const logo = computed(() => data.value?.SiteSettings.Logo ?? '');
   const phoneNumber = computed(() => data.value?.callCanterPhone ?? '');

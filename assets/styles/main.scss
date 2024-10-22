@@ -46,3 +46,16 @@ nav {
     margin: 0;
   }
 }
+
+.map {
+  position: relative;
+  cursor: grab;
+  flex-grow: 1;
+  .ymaps3x0--control__background {
+    .ymaps3x0--geolocation-control {
+      &-is-loading {
+        background: none;
+      }
+    }
+  }
+}

@@ -55,3 +55,11 @@ export type IModifierGroup = Record<string, {
   upLimit: number
   downLimit: number
 }>;
+
+export interface IMenuDetailedResponse extends IMenuResponse {
+  restaurantId: string
+  /* "restaurantName": string,
+  orderTypeId: 0 */
+  priceOfDelivery: number
+  deliveryDuration: number
+}

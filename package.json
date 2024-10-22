@@ -21,7 +21,7 @@
     "primeicons": "^7.0.0",
     "primevue": "^4.1.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-yandex-maps": "^2.1.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.7.3",

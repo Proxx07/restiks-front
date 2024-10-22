@@ -5,9 +5,24 @@
     "filial": "Filial",
     "contacts": "Contacts",
     "profile": "Profile",
-    "history": "History",
-    "addresses": "Addresses",
-    "favorites": "Favorites",
+    "profile-history": "History",
+    "profile-addresses": "Addresses",
+    "profile-favorites": "Favorites",
     "exit": "Exit"
-  }
+  },
+
+  "folders": "Catalog",
+  "my-profile": "My account",
+
+  "header": {
+    "delivery-title": "Delivery or takeaway",
+    "delivery-text": "Select reception type",
+    "region-title": "Region",
+    "login": "Login",
+    "search": "Search...",
+    "basket": "Basket"
+  },
+
+  "delivery": "Delivery",
+  "self-delivery": "Self-delivery"
 }

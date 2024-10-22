@@ -1,5 +1,6 @@
 export const toggleButtonConfig = () => {
   return {
+    padding: '1.2rem 1rem',
     colorScheme: {
       light: {
         color: 'var(--text-color)',
@@ -14,7 +15,7 @@ export const toggleButtonConfig = () => {
 export const toggleButtonPt = () => {
   return {
     label: {
-      class: 'font-16-n',
+      class: 'font-16-b',
     },
   };
 };

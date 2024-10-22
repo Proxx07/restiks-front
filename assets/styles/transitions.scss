@@ -41,7 +41,6 @@
 .slideY-enter-active,
 .slideY-leave-active {
   transition: var(--transition-slow);
-  //transition: all 40s;
 }
 .slideY-enter-from {
   opacity: 0;
@@ -64,6 +63,24 @@
   opacity: 0;
   transform: translateX(150%);
 }
+
+.slideX-enter-active,
+.slideX-leave-active {
+  transition: var(--transition-fast);
+}
+
+.slideX-enter-from {
+  opacity: 0;
+  transform: translateX(-150%);
+}
+
+.slideX-leave-to {
+  opacity: 0;
+  transform: translateX(150%);
+}
+
+
+
 
 .blur-enter-active,
 .blur-leave-active {

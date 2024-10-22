@@ -20,4 +20,28 @@ html body {
       }
     }
   }
+
+  .p-dialog {
+    &.map-dialog {
+      height: 100%;
+      width: 100%;
+      max-width: 130rem;
+      .p-dialog-content {
+        flex-grow: 1;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .p-togglebutton {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .p-card.flat {
+    --p-card-body-padding: 1rem;
+    --p-card-border-radius: var(--radius-m);
+    box-shadow: none;
+    border: 1px solid var(--primary-500);
+  }
 }

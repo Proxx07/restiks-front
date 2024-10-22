@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { globe, marker } from 'assets/images';
+import Dialog from 'primevue/dialog';
 import Popover, { type PopoverMethods } from 'primevue/popover';
 import { useNavigation } from '~/composables/useNavigation';
 import type { ActionTypes } from '~/composables/useNavigation/types';
@@ -8,12 +9,14 @@ const { headerPages } = useNavigation();
 
 const siteStore = useSiteStore();
 const menuStore = useMenuStore();
-const regionStore = useRegionsStore();
+const locationStore = useLocationStore();
+const modalsStore = useModalsStore();
 
 const getDataCommonData = async () => {
   await Promise.all([
-    menuStore.getRegionMenu(),
-    regionStore.getRegions(),
+    menuStore.getMenu(),
+    locationStore.getRegions(),
+    locationStore.getRestaurantsList(),
   ]);
 };
 await getDataCommonData();
@@ -23,10 +26,12 @@ const togglePopover = (e: Event) => {
   regionPopover.value?.toggle(e);
 };
 
-const regionSelectHandler = (id: number) => {
-  regionStore.setRegionId(id);
+const regionSelectHandler = async (id: number) => {
+  locationStore.setRegionId(id);
+  locationStore.setLongLat([0, 0]);
+  locationStore.setRestaurantId('');
   if (regionPopover.value) regionPopover.value.hide();
-  menuStore.getRegionMenu();
+  await menuStore.getMenu();
 };
 
 const sideBarActionHandler = (value: ActionTypes) => {
@@ -39,22 +44,23 @@ const sideBarActionHandler = (value: ActionTypes) => {
     <Header :logo="siteStore.logo" :pages="headerPages">
       <template #header-items>
         <site-navigation-item
-          title="Доставка или еда навынос"
-          button-text="Выберите тип приёма"
+          :title="$t('header.delivery-title')"
+          :button-text="$t(locationStore.activeDeliveryName)"
           :icon="marker"
+          @button-clicked="modalsStore.openMapModal"
         />
 
         <site-navigation-item
-          title="Регион"
-          :button-text="regionStore.activeRegion?.name"
+          :title="$t('header.region-title')"
+          :button-text="locationStore.activeRegion?.name"
           :icon="globe"
           @button-clicked="togglePopover"
         />
       </template>
 
       <template #header-bottom>
-        <input-text v-model="menuStore.search" placeholder="Поиск" fluid />
-        <Button label="Cart" />
+        <input-text v-model="menuStore.search" :placeholder="$t('header.search')" fluid />
+        <Button :label="$t('header.basket')" />
       </template>
     </Header>
 
@@ -82,17 +88,13 @@ const sideBarActionHandler = (value: ActionTypes) => {
 
     <Popover ref="regionPopover">
       <div class="regions-list">
-        <Button v-for="region in regionStore.regions" :key="region.id" text :label="region.name" @click="regionSelectHandler(region.id)" />
+        <Button v-for="region in locationStore.regions" :key="region.id" text :label="region.name" @click="regionSelectHandler(region.id)" />
       </div>
     </Popover>
 
-    <!--    <Dialog v-model:visible="dialog" modal :draggable="false" header="Map-widget-title"> -->
-    <!--      <h3>Map widget</h3> -->
-    <!--    </Dialog> -->
-
-    <!--    <Dialog v-model:visible="authModal" modal :draggable="false" header="Auth"> -->
-    <!--      <h3>Auth modal</h3> -->
-    <!--    </Dialog> -->
+    <Dialog v-model:visible="modalsStore.mapModal" modal :draggable="false" :header="$t('header.delivery-text')" class="map-dialog">
+      <map-widget :delivery-types="locationStore.deliveryList" :restaurants="locationStore.restMarkers" />
+    </Dialog>
   </div>
 </template>
 

@@ -21,7 +21,8 @@ const emit = defineEmits<{
       <Button
         v-if="buttonText"
         class="item-button"
-        :pt="{ root: 'font-14-n' }"
+        fluid
+        :pt="{ root: 'font-14-n text-left' }"
         :label="buttonText"
         text
         @click="e => emit('buttonClicked', e)"
@@ -58,7 +59,7 @@ const emit = defineEmits<{
   }
   .item-button {
     --p-button-padding-y: .2rem;
-    --p-button-padding-x: 0;
+    --p-button-padding-x: .1rem;
   }
 
   .details {

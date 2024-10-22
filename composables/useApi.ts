@@ -4,11 +4,15 @@ export function useApi<T>(url: string | (() => string), options: UseFetchOptions
   const $toast = useToastStore();
   const headers = useRequestHeaders(['cookie']);
 
-  const opts = { immediate: false, ...options, headers };
+  const opts = { immediate: false, ...options, headers, initialCache: false };
 
   return useFetch(url,
     {
       $fetch,
+
+      onRequest() {
+        console.log(options);
+      },
 
       onResponseError(event) {
         if (import.meta.server) return;

@@ -1,13 +1,28 @@
 {
   "menu": {
-    "index": "Menu uz",
-    "about": "About",
-    "filial": "Filial",
-    "contacts": "Contacts",
-    "profile": "Profile",
-    "history": "History",
-    "addresses": "Addresses",
-    "favorites": "Favorites",
-    "exit": "Exit"
-  }
+    "index": "Menu",
+    "about": "Biz haqimizda",
+    "filial": "Filialar",
+    "contacts": "Kontaktlar",
+    "profile": "Profil",
+    "profile-history": "Buyurtma tarixi",
+    "profile-addresses": "Adresslar",
+    "profile-favorites": "Sevimlilar",
+    "exit": "Chiqish"
+  },
+
+  "folders": "Katalog",
+  "my-profile": "Profil",
+
+  "header": {
+    "delivery-title": "Yetkazib berish yoki olib ketish",
+    "delivery-text": "Qabul qilish turini tanlang",
+    "region-title": "Xudud",
+    "login": "Kirish",
+    "search": "Qidiruv...",
+    "basket": "Savat"
+  },
+
+  "delivery": "Delivery uz",
+  "self-delivery": "Self-delivery uz"
 }

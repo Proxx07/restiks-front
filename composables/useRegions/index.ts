@@ -9,12 +9,14 @@ export const useRegions = () => {
 
   const loading = computed(() => status.value === 'pending');
 
+  const regions = computed(() => data.value || []);
+
   const setRegionId = (value: number) => {
     currentRegionId.value = value;
   };
 
   return {
-    data,
+    regions,
     loading,
     activeRegion,
     currentRegionId,

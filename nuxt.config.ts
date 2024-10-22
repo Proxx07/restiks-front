@@ -43,7 +43,12 @@ export default defineNuxtConfig({
     '@primevue/nuxt-module',
     '@vueuse/nuxt',
     '@nuxtjs/i18n',
+    'vue-yandex-maps/nuxt',
   ],
+
+  yandexMaps: {
+    apikey: 'd1683129-041e-4b66-b5e3-8dea8e6cb4c2',
+  },
 
   pinia: {
     storesDirs: ['./store/**'],

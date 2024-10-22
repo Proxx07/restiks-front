@@ -4,7 +4,9 @@ import type { IProduct } from '~/composables/useMenu/types';
 export const useMenuStore = defineStore('menu', () => {
   const $route = useRoute();
 
-  const { folders, products, loading, getRegionMenu } = useMenu();
+  const locationStore = useLocationStore();
+
+  const { folders, products, loading, getRegionMenu, getRestaurantMenu, getCustomMenu } = useMenu();
 
   const search = ref<string>('');
 
@@ -16,10 +18,29 @@ export const useMenuStore = defineStore('menu', () => {
     return [];
   });
 
+  const getMenu = async () => {
+    if (locationStore.isDelivery) {
+      if (!locationStore.longLat[0] && !locationStore.longLat[1]) {
+        await getRegionMenu();
+      }
+      else {
+        await getCustomMenu();
+      }
+    }
+    else {
+      if (locationStore.restaurantId) {
+        await getRestaurantMenu();
+      }
+      else {
+        await getRegionMenu();
+      }
+    }
+  };
+
   return {
     search,
     folders, products, loading,
     currentProducts, currentFolderId,
-    getRegionMenu,
+    getMenu,
   };
 });

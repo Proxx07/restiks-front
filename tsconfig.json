@@ -5,5 +5,13 @@
     "@types/node",
     "@nuxt/types",
     "@pinia/nuxt",
-  ]
+    "@yandex/ymaps3-types",
+  ],
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@yandex/ymaps3-types",
+      //"./node_modules/telegram-webapps-types"
+    ]
+  }
 }
