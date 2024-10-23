@@ -21,7 +21,7 @@ export function useApi<T>(url: string | (() => string), options: UseFetchOptions
       },
 
       ...options,
-      ...Object.assign(headers, options.headers ?? {}),
+      headers,
       watch: false,
       immediate: false,
     },

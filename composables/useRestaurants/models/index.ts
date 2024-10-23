@@ -14,7 +14,7 @@ import type { IMarker, IRestaurant } from '../types';
 export function setMarkerFromRestaurant(restaurant: IRestaurant): IMarker {
   return {
     id: restaurant.id,
-    coordinates: [restaurant.longitude, restaurant.latitude],
+    coordinates: [+restaurant.longitude, +restaurant.latitude],
     title: restaurant.name,
     iconSrc: 'markerIcon',
     address: restaurant.address,

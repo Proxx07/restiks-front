@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
   const resultPath = path.includes('?') ? `${path}&Language=${lang[ln as Languages]}` : `${path}?Language=${lang[ln as Languages]}`;
 
   const target = joinURL(apiBaseUrl, resultPath);
-
   let token = '';
 
   try {

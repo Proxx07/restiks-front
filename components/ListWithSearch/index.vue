@@ -8,7 +8,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: 'update:search', value: string): string
+  (e: 'update:search', value: string): void
+  (e: 'item-click', value: any): void
 }>();
 
 const searchText = computed({
@@ -32,7 +33,7 @@ const searchText = computed({
     />
     <div class="list">
       <transition-group name="slideX">
-        <Card v-for="item in list" :key="item.id" class="flat list-item">
+        <Card v-for="item in list" :key="item.id" class="flat list-item" :class="[item.isActive && 'active']" @click="emit('item-click', item)">
           <template #content>
             <div class="font-16-b">
               {{ item[listNameKey] }}

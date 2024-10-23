@@ -36,6 +36,7 @@ const regionSelectHandler = async (id: number) => {
 
 const sideBarActionHandler = (value: ActionTypes) => {
   console.log(value);
+  // logout()
 };
 </script>
 

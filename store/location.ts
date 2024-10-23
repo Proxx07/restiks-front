@@ -11,7 +11,7 @@ export const useLocationStore = defineStore('location', () => {
 
   const {
     regions, loading: regionLoading, activeRegion,
-    currentRegionId, setRegionId, getRegions,
+    currentRegionId, setRegionId, getRegions, activeRegionCenterCoords,
   } = useRegions();
 
   const {
@@ -24,7 +24,7 @@ export const useLocationStore = defineStore('location', () => {
   return {
     isDelivery, deliveryList, activeDelivery, activeDeliveryName, setActiveDelivery,
 
-    regions, regionLoading, activeRegion, currentRegionId, setRegionId, getRegions,
+    regions, regionLoading, activeRegion, currentRegionId, activeRegionCenterCoords, setRegionId, getRegions,
 
     restaurantId, restaurantsLoading, restMarkers, restaurants, getRestaurantsList, setRestaurantId, activeRestic,
 

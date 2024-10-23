@@ -16,6 +16,8 @@ export interface ISiteSettings {
 
   SiteSettings: {
     Logo: string
+    Marker: string
+    Colors: Record<string, string>
   }
 
   socials: Array<{
