@@ -47,6 +47,9 @@ export interface IProduct {
 export interface IMenuResponse {
   categories: IFolder[]
   products: IProduct[]
+
+  data?: any
+  error?: any
 }
 
 export type IModifierGroup = Record<string, {

@@ -2,6 +2,7 @@
 import { globe, marker } from 'assets/images';
 import Dialog from 'primevue/dialog';
 import Popover, { type PopoverMethods } from 'primevue/popover';
+import type { SubmitItem } from '~/composables/UI/useMapWidget/types';
 import { useNavigation } from '~/composables/useNavigation';
 import type { ActionTypes } from '~/composables/useNavigation/types';
 
@@ -31,12 +32,30 @@ const regionSelectHandler = async (id: number) => {
   locationStore.setLongLat([0, 0]);
   locationStore.setRestaurantId('');
   if (regionPopover.value) regionPopover.value.hide();
+
   await menuStore.getMenu();
 };
 
 const sideBarActionHandler = (value: ActionTypes) => {
   console.log(value);
   // logout()
+};
+
+const confirmationHandler = async (value: SubmitItem) => {
+  const storageData = locationStore.getCurrentStorageData();
+
+  locationStore.setActiveDelivery(value.delivery);
+  locationStore.setRestaurantId(value.activeMarkerId);
+  locationStore.setLongLat((value.coords as [number, number]) ?? [0, 0]);
+
+  await menuStore.getMenu();
+
+  if (menuStore.menuError) {
+    locationStore.setStorageData(storageData);
+  }
+  else {
+    modalsStore.closeMapModal();
+  }
 };
 </script>
 
@@ -94,7 +113,7 @@ const sideBarActionHandler = (value: ActionTypes) => {
     </Popover>
 
     <Dialog v-model:visible="modalsStore.mapModal" modal :draggable="false" :header="$t('header.delivery-text')" class="map-dialog">
-      <map-widget :delivery-types="locationStore.deliveryList" :restaurants="locationStore.restMarkers" />
+      <map-widget :loading="menuStore.loading" :delivery-types="locationStore.deliveryList" :restaurants="locationStore.restMarkers" @confirm="confirmationHandler" />
     </Dialog>
   </div>
 </template>

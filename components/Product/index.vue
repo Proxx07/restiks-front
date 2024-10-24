@@ -94,7 +94,7 @@ const checkKindsAmount = (value: number, id: string) => {
       <div v-for="modifier in Object.keys(modifiers)" :key="modifier" class="modifier-group">
         <b>{{ modifiers[modifier].name }}: </b>
 
-        <!--        <template v-for="item in modifiers[modifier].list" :key="item.id">
+        <template v-for="item in modifiers[modifier].list" :key="item.id">
           <ProductModifier
             v-model:amount="kinds[item.id]"
             :active="selectedModifiers.includes(item.id)"
@@ -103,7 +103,7 @@ const checkKindsAmount = (value: number, id: string) => {
             @modifier-selected="itemClickHandler(item)"
             @update:amount="($event: number) => checkKindsAmount($event, item.id)"
           />
-        </template> -->
+        </template>
       </div>
     </div>
   </card-item>

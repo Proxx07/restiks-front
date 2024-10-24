@@ -47,7 +47,8 @@ export default defineNuxtConfig({
   ],
 
   yandexMaps: {
-    apikey: 'd1683129-041e-4b66-b5e3-8dea8e6cb4c2',
+    // apikey: 'd1683129-041e-4b66-b5e3-8dea8e6cb4c2',
+    apikey: 'ac96c789-43d4-408b-a93a-7386f0c88b36',
   },
 
   pinia: {

@@ -1,63 +1,14 @@
 <script setup lang="ts">
-import type { LngLat } from '@yandex/ymaps3-types';
-import type { IDelivery } from '~/composables/useDelivery/types';
-import type { IMarker } from '~/composables/useRestaurants/types';
-import { yandexSearch } from '~/ustils/yandexMapSearch';
+import { useMapWidget } from '~/composables/UI/useMapWidget';
+import type { IEmits, IProps } from '~/composables/UI/useMapWidget/types';
 
-const props = defineProps<{
-  deliveryTypes: IDelivery[]
-  restaurants: IMarker[]
-}>();
+const props = defineProps<IProps>();
+const emit = defineEmits<IEmits>();
 
-const emit = defineEmits<{
-  (e: 'confirm', value: any): void
-}>();
-
-const delivery = ref(0);
-const deliveryCoords = ref<LngLat>();
-const activeMarkerId = ref<string>('');
-
-const search = ref('');
-const suggestedAddresses = ref<IMarker[]>([]);
-
-const selectedAddressTitle = ref<string>('Убедитесь что метка поставлена правильно!');
-
-const list = computed(() => {
-  if (delivery.value === 0) return suggestedAddresses.value;
-  return props.restaurants
-    .map(rest => ({ ...rest, isActive: rest.id === activeMarkerId.value }))
-    .filter(rest => rest.title.toLowerCase().includes(search.value.toLowerCase()));
-});
-
-const delId = computed({
-  get() {
-    return delivery.value;
-  },
-  set(value) {
-    delivery.value = value;
-    deliveryCoords.value = undefined;
-    activeMarkerId.value = '';
-  },
-});
-
-const mapMoveHandler = async (value: LngLat) => {
-  deliveryCoords.value = value;
-
-  const result = await yandexSearch(value.join());
-  selectedAddressTitle.value = result[0]?.title ?? '';
-};
-
-const markerClickHandler = (value: IMarker) => {
-  activeMarkerId.value = value.id;
-  selectedAddressTitle.value = value.title;
-};
-
-const searchInputHandler = async (text: string) => {
-  if (delivery.value === 200) return;
-  const result = await yandexSearch(`узбекистан ${text}`);
-  suggestedAddresses.value = result;
-  if (!search.value) suggestedAddresses.value = [];
-};
+const {
+  delId, search, list, isLoading, selectedAddressTitle, activeMarkerId,
+  markerClickHandler, searchInputHandler, mapMoveHandler, submitHandler,
+} = useMapWidget(props, emit);
 </script>
 
 <template>
@@ -83,13 +34,19 @@ const searchInputHandler = async (text: string) => {
       </div>
 
       <div class="footer">
-        <Button label="confirm" fluid />
+        <Button
+          fluid
+          :label="isLoading ? $t('wait') : $t('confirm')"
+          :loading="isLoading"
+          loading-icon="pi pi-spin pi-spinner"
+          @click="submitHandler"
+        />
       </div>
     </div>
     <div class="right">
       <MapComponent
         :map-title="selectedAddressTitle"
-        :center-marker="delivery === 0"
+        :center-marker="delId === 0"
         :markers="restaurants"
         :active-maker-id="activeMarkerId"
         @map-moved="mapMoveHandler"

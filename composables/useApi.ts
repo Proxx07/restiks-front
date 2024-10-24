@@ -10,14 +10,22 @@ export function useApi<T>(url: string | (() => string), options: UseFetchOptions
 
       onResponseError(event) {
         if (import.meta.server) return;
-
-        // console.log(event.response);
+        if (event.error) {
+          if (typeof event.error.message === 'string') {
+            $toast.error(event.error.message);
+          }
+        }
+        else {
+          $toast.error('server.error', event.response.statusText);
+        }
       },
 
       onResponse(event) {
         if (import.meta.server) return;
         // common error handler
-        // console.log(event.response);
+        if (event.response._data.error) {
+          $toast.error(event.response._data.error as string);
+        }
       },
 
       ...options,

@@ -112,5 +112,6 @@ const {
   transform: translate(-50%, -50%);
   color: var(--primary-500);
   margin-top: -1.2rem;
+  pointer-events: none;
 }
 </style>

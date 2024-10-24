@@ -1,6 +1,6 @@
 export const useLocation = () => {
   const longitude = useCookie<number>('longitude', { default: () => 0 });
-  const latitude = useCookie<number>('longitude', { default: () => 0 });
+  const latitude = useCookie<number>('latitude', { default: () => 0 });
 
   const longLat = computed<[number, number]>(() => [
     longitude.value,

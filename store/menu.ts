@@ -6,7 +6,10 @@ export const useMenuStore = defineStore('menu', () => {
 
   const locationStore = useLocationStore();
 
-  const { folders, products, loading, getRegionMenu, getRestaurantMenu, getCustomMenu } = useMenu();
+  const {
+    folders, products, loading, menuError,
+    getRegionMenu, getRestaurantMenu, getCustomMenu,
+  } = useMenu();
 
   const search = ref<string>('');
 
@@ -24,7 +27,6 @@ export const useMenuStore = defineStore('menu', () => {
         await getRegionMenu();
       }
       else {
-        console.log('123');
         await getCustomMenu();
       }
     }
@@ -40,7 +42,7 @@ export const useMenuStore = defineStore('menu', () => {
 
   return {
     search,
-    folders, products, loading,
+    folders, products, loading, menuError,
     currentProducts, currentFolderId,
     getMenu,
   };

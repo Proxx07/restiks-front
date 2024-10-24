@@ -47,7 +47,7 @@ html body {
     border: 1px solid var(--p-inputtext-border-color);
     &.active {
       border: 1px solid var(--primary-500);
-      background: var(--primary-50);
+      background:  color-mix(in srgb,var(--primary-500), transparent 90%);
     }
   }
 }

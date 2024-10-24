@@ -33,7 +33,7 @@ const searchText = computed({
     />
     <div class="list">
       <transition-group name="slideX">
-        <Card v-for="item in list" :key="item.id" class="flat list-item" :class="[item.isActive && 'active']" @click="emit('item-click', item)">
+        <Card v-for="item in list" :key="item.id" class="flat list-item" :class="[item.isActive && 'active']" м @click="emit('item-click', item)">
           <template #content>
             <div class="font-16-b">
               {{ item[listNameKey] }}

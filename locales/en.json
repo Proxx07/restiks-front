@@ -11,6 +11,8 @@
     "exit": "Exit"
   },
 
+  "confirm": "Подтвердить",
+  "wait": "Awaiting",
   "folders": "Catalog",
   "my-profile": "My account",
 

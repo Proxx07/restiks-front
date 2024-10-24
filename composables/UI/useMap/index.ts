@@ -11,7 +11,15 @@ export const useMap = (props: IProps, emit: IEmits) => {
   const map = shallowRef<YMap>();
   const cluster = shallowRef<YMapClusterer>();
 
-  const activeMarkerCoords = computed(() => props.markers.find(m => m.id === props?.activeMakerId)?.coordinates);
+  const isActiveIdCoordinate = computed(() => {
+    if (!props.activeMakerId) return false;
+    return props.activeMakerId.split(',').map(cord => Number(cord)).every(n => !Number.isNaN(n));
+  });
+
+  const activeMarkerCoords = computed(() => {
+    if (isActiveIdCoordinate.value) return props.activeMakerId?.split(',').map(cord => Number(cord));
+    return props.markers.find(m => m.id === props?.activeMakerId)?.coordinates;
+  });
 
   const settings = computed<YandexMapSettings>(() => {
     return {
